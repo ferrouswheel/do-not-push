@@ -1,0 +1,30 @@
+sequences:
+    greeting:
+        # relative to current dir, id is greeting.0, 0 indexed
+        - audio: 001-hello.mp3
+          text: "Hello there"
+        - audio: 002-hello.mp3
+          text: "I am a button"
+        - audio: 002-hello.mp3
+          text: "You shouldn't be pushing me"
+    angry_button:
+        - audio: 001-hello.mp3
+          text: "Leave me alone"
+        - audio: 002-hello.mp3
+          text: "I'm warning you"
+        - audio: 002-hello.mp3
+          text: "You shouldn't be pushing me"
+transitions:
+    button:
+        - sequence: greeting 
+          weight: 1
+        - sequence: angry_button
+          weight: 2
+        - dir: authority 
+          weight: 1 
+    timeout:
+        - sequence: where_are_you 
+          weight: 1 
+          interval: 60
+        - dir: ..
+          weight: 1 
