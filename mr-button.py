@@ -26,6 +26,11 @@ class MrButton(object):
         n, seq = self.current_state
         self.current_state = n.next_state(seq, cache=self.recent_sequences, trigger='button')
 
+    def trim_cache(self):
+        MAX_CACHE = 10
+        if len(self.recent_sequences) > MAX_CACHE:
+            self.recent_sequences = self.recent_sequences[-10:]
+
 
 class Narrative(object):
 
@@ -92,6 +97,8 @@ class Narrative(object):
             index = 0
             self.run_phrase(seq_name, index)
 
+        if cache[-1] != seq_name:
+            cache.append(seq_name)
         return (self, (seq_name, index))
 
     def run_phrase(self, sequence_name, index):
