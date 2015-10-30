@@ -98,8 +98,8 @@ class Narrative(object):
             index = 0
             self.run_phrase(seq_name, index)
 
-        #if len(cache) == 0 or cache[-1] != seq_name:
-            #cache.append(seq_name)
+        if len(cache) == 0 or cache[-1] != seq_name:
+            cache.append(seq_name)
         return (self, (seq_name, index))
 
     def run_phrase(self, sequence_name, index):
