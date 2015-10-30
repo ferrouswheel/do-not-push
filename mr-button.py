@@ -20,10 +20,11 @@ class MrButton(object):
     def __init__(self, data_dir='./data'):
         self.root_narrative = Narrative(os.path.join(data_dir, config_file))
         self.current_state = (self.root_narrative, None)
+        self.recent_sequences = []
 
     def push_button(self):
         n, seq = self.current_state
-        self.current_state = n.next_state(seq, trigger='button')
+        self.current_state = n.next_state(seq, cache=self.recent_sequences, trigger='button')
 
 
 class Narrative(object):
@@ -44,18 +45,29 @@ class Narrative(object):
 
 
     def _load_children(self, transition_type):
-        for seq in self.transitions.get(transition_type, []):
+        parent_found = False
+        self.transitions.setdefault(transition_type, [])
+        for seq in self.transitions[transition_type]:
             if 'dir' in seq:
                 p = os.path.join(self.basedir, seq['dir'])
                 if is_subdir(self.basedir, p):
                     seq['narrative'] = Narrative(os.path.join(p, config_file), self)
                 elif seq['dir'] == '..':
                     # parent
-                    seq['narrative'] = self
+                    parent_found = True
+                    seq['narrative'] = self.parent
                 else:
                     print p, "is not a subdir"
+        if not parent_found and self.parent:
+            # add transition back to parent if not explicitly defined
+            self.transitions[transition_type].append({
+                'dir': '..',
+                'weight': 1,
+                'narrative': self.parent,
+                })
 
-    def next_state(self, sequence_phrase, trigger='button'):
+
+    def next_state(self, sequence_phrase, cache, trigger='button'):
         seq_name = None
         index = None
         if sequence_phrase:
@@ -70,11 +82,11 @@ class Narrative(object):
         if seq_name is None:
             # If no sequence, then we have finished and need to
             # work what to do next. This might involve a new
-            t = self.select_transition()
+            t = self.select_transition(cache)
             if t is None:
                 return (self, (None, None))
             elif 'narrative' in t:
-                return t['narrative'].next_state(None, trigger)
+                return t['narrative'].next_state(None, cache, trigger)
             elif 'sequence' in t:
                 seq_name = t['sequence']
             index = 0
@@ -87,12 +99,21 @@ class Narrative(object):
         phrase = seq[index]
         print "Mr Button says: ", phrase.get("text", "")
 
-    def select_transition(self, trigger='button'):
-        choices = self.transitions.get(trigger,[])
-        transition_index = random.randint(0, len(choices) - 1)
-        print choices
-        print transition_index
-        return choices[transition_index]
+    def select_transition(self, cache, trigger='button'):
+        choices = {}
+        for c in self.transitions.get(trigger,[]):
+            if 'sequence' in c:
+                choices[c['sequence']] = c
+            elif 'dir' in c:
+                choices['__dir__' + c['dir']] = c
+
+        for seq_name in reversed(cache):
+            if seq_name in choices and len(choices) > 1:
+                del choices[seq_name]
+        
+        keys = choices.keys()
+        transition_index = random.randint(0, len(keys) - 1)
+        return choices[keys[transition_index]]
 
 
 mr_button = MrButton()
