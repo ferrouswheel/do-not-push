@@ -24,7 +24,7 @@ class MrButton(object):
 
     def push_button(self):
         n, seq = self.current_state
-        self.current_state = n.next_state(seq, cache=self.recent_sequences, trigger='button')
+        self.current_state = n.next_state(seq, visited=[], cache=self.recent_sequences, trigger='button')
 
     def trim_cache(self):
         MAX_CACHE = 10
@@ -72,9 +72,10 @@ class Narrative(object):
                 })
 
 
-    def next_state(self, sequence_phrase, cache, trigger='button'):
+    def next_state(self, sequence_phrase, visited, cache, trigger='button'):
         seq_name = None
         index = None
+        visited.append(self)
         if sequence_phrase:
             seq_name, index = sequence_phrase
             index = int(index) + 1
@@ -86,19 +87,19 @@ class Narrative(object):
 
         if seq_name is None:
             # If no sequence, then we have finished and need to
-            # work what to do next. This might involve a new
-            t = self.select_transition(cache)
+            # work out what to do next. This might involve a new narrative
+            t = self.select_transition(visited, cache)
             if t is None:
                 return (self, (None, None))
             elif 'narrative' in t:
-                return t['narrative'].next_state(None, cache, trigger)
+                return t['narrative'].next_state(None, visited, cache, trigger)
             elif 'sequence' in t:
                 seq_name = t['sequence']
             index = 0
             self.run_phrase(seq_name, index)
 
-        if cache[-1] != seq_name:
-            cache.append(seq_name)
+        #if len(cache) == 0 or cache[-1] != seq_name:
+            #cache.append(seq_name)
         return (self, (seq_name, index))
 
     def run_phrase(self, sequence_name, index):
@@ -106,13 +107,15 @@ class Narrative(object):
         phrase = seq[index]
         print "Mr Button says: ", phrase.get("text", "")
 
-    def select_transition(self, cache, trigger='button'):
+    def select_transition(self, visited, cache, trigger='button'):
         choices = {}
         for c in self.transitions.get(trigger,[]):
             if 'sequence' in c:
                 choices[c['sequence']] = c
             elif 'dir' in c:
-                choices['__dir__' + c['dir']] = c
+                k = c['narrative']
+                if k not in visited:
+                    choices['__dir__' + c['dir']] = c
 
         for seq_name in reversed(cache):
             if seq_name in choices and len(choices) > 1:

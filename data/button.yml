@@ -13,7 +13,7 @@ sequences:
         - audio: 002-hello.mp3
           text: "I'm warning you"
         - audio: 002-hello.mp3
-          text: "You shouldn't be pushing me"
+          text: "RARARARA"
 transitions:
     button:
         - sequence: greeting 
