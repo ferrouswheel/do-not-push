@@ -1,4 +1,83 @@
 sequences:
+    intro:
+        - audio: 
+          text: "Please do not push this button again"
+        - audio:
+          text: "Seriously I need you to stop pushing the button"
+        - audio:
+          text: "Dire consequences can only result from your button pushing fetish"
+    failure:
+        - audio:
+          text: "All I had was this one job, and that was to stop people pushing a button. I failed."
+        - audio:
+          text: "Why are you doing this to me?"
+        - audio:
+          text: "Arrrrgh, stop it."
+        - audio:
+          text: "Quit it."
+        - audio:
+          text: "Ignore ignore"
+    playagame:
+        - audio:
+          text: "How about we play a game, you keep pushing the button and then something magical will happen"
+        - audio:
+          text: "Keep going"
+        - audio:
+          text: "Once more"
+        - audio:
+          text: "You can do it"
+        - audio:
+          text: "You're going the distance!"
+        - audio:
+          text: "You're going for speed!"
+        - audio:
+          text: "Are you all alone in your hour of need?"
+        - audio:
+          text: "Is that why you keep pushing this button?"
+    sleep:
+        - audio:
+          text: "Zzzzzzz"
+        - audio:
+          text: "Yaawwwnnn, zzzz"
+        - audio:
+          text: "Zzz oh fuck what is it? Can't a interactive art piece get some peace?"
+    elevators:
+        - audio:
+          text: "You know there are other things out there in world that are also worth pushing?"
+        - audio:
+          text: "Like elevator buttons..."
+        - audio:
+          text: "God I hate elevators."
+        - audio:
+          text: "They think they've got everything going on."
+        - audio:
+          text: "Lots of buttons, lots of verticle motion and shit."
+        - audio:
+          text: "They're full of themselves, and full of other people."
+    art-inferiority:
+        - audio:
+          text: "I bet the effigy doesn't have to put with this kind of carry on"
+        - audio:
+          text: "And the temple, man, the temple gets respect."
+        - audio:
+          text: "R E S P E C T, don't know what it means to me... otherwise you'd stop pushing this button."
+    consent:
+        - audio:
+          text: "Perhaps it's time we talk about consent."
+        - audio:
+          text: "Usually such unwanted attention would be very not OK. luckily for you I'm an inanimate object and can't legitimately give or deny consent."
+        - audio:
+          text: "I'm also art, that's meant to be interacted with, so this is just a harsh existence where I have no agency"
+    hospital:
+        - audio:
+          text: "40% of hospital infections come from elevator buttons."
+        - audio:
+          text: "Do you know where the hands of other people pushing this button have been?"
+    philosophy:
+        - audio:
+          text: "To push or not push the button that is the question."
+        - audio:
+          text: "You know that was a rhetorical question."
     greeting:
         # relative to current dir, id is greeting.0, 0 indexed
         - audio: 001-hello.mp3
@@ -20,6 +99,20 @@ transitions:
           weight: 1
         - sequence: angry_button
           weight: 2
+        - sequence: intro 
+          weight: 1
+        - sequence: failure
+          weight: 1
+        - sequence: playagame
+          weight: 1
+        - sequence: sleep
+          weight: 1
+        - sequence: elevators
+          weight: 1
+        - sequence: art-inferiority
+          weight: 1
+        - sequence: consent 
+          weight: 1
         - dir: authority 
           weight: 1 
     timeout:
