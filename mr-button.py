@@ -1,8 +1,14 @@
 import yaml
 
 import os
-import random
+import sys
+
 import os.path
+import random
+
+from slugify import slugify
+
+from button.audio import record, play_back, save_to_file
 
 config_file = 'button.yml'
 
@@ -24,6 +30,7 @@ class MrButton(object):
 
     def push_button(self):
         n, seq = self.current_state
+        self.trim_cache()
         self.current_state = n.next_state(seq, visited=[], cache=self.recent_sequences, trigger='button')
 
     def trim_cache(self):
@@ -31,12 +38,32 @@ class MrButton(object):
         if len(self.recent_sequences) > MAX_CACHE:
             self.recent_sequences = self.recent_sequences[-10:]
 
+    def find_missing_audio(self):
+        for n, (seq_name, seq) in self.root_narrative.all_sequences():
+            missing = []
+            for i, row in enumerate(seq):
+                audio_file = row.get('audio')
+
+                if audio_file is None:
+                    missing.append(i)
+                else:
+                    fn = os.path.join(n.basedir, audio_file)
+                    if not os.path.isfile(fn):
+                        print "audio file for %s.%d is %s but missing" % (seq_name, i, fn)
+                        missing.append(i)
+            if missing:
+                yield n, seq_name, missing
+
+    def get_sequence(self, seq_name):
+        return self.root_narrative.get_sequence(seq_name)
+
 
 class Narrative(object):
 
     def __init__(self, yaml_file, parent=None):
         self.basedir = os.path.dirname(yaml_file)
         self.parent = parent
+        self.yaml_file = yaml_file
         with open(yaml_file, 'r') as f:
             narrative = yaml.load(f)
             self.sequences = narrative.get('sequences', {})
@@ -48,6 +75,29 @@ class Narrative(object):
         self._load_children('button')
         self._load_children('timeout')
 
+    def get_sequence(self, name):
+        if name in self.sequences:
+            return self.sequences[name]
+
+        for _, transitions in self.transitions.iteritems():
+            for t in transitions:
+                if 'narrative' in t:
+                    if t['narrative'] == self.parent:
+                        continue
+                    s = t['narrative'].get_sequence(name)
+                    if s:
+                        return s
+    
+    def all_sequences(self):
+        for seq in self.sequences.iteritems():
+            yield self, seq
+        for _, transitions in self.transitions.iteritems():
+            for t in transitions:
+                if 'narrative' in t:
+                    if t['narrative'] == self.parent:
+                        continue
+                    for n, seq in t['narrative'].all_sequences():
+                        yield n, seq
 
     def _load_children(self, transition_type):
         parent_found = False
@@ -125,14 +175,67 @@ class Narrative(object):
         transition_index = random.randint(0, len(keys) - 1)
         return choices[keys[transition_index]]
 
+    def save_audio(self, seq_name, line, fn):
+        n = {}
 
-mr_button = MrButton()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
-mr_button.push_button()
+        tmp_file = os.path.join(self.basedir, fn)
+        result = os.system("lame --preset voice %s" % (tmp_file,))
+        if result:
+            print result
+            raise Exception("Error encoding audio wave to mp3")
+
+        (root, ext) = os.path.splitext(fn)
+        fn = root + '.mp3'
+
+        with open(self.yaml_file, 'r') as f:
+            n = yaml.load(f)
+            sequences = n['sequences']
+            sequences[seq_name][line]['audio'] = fn 
+            print "updating: ", sequences[seq_name][line]
+
+        n['sequences'] = sequences
+        with open(self.yaml_file, 'w') as f:
+            print "saving yaml"
+            yaml.dump(n, f)
+
+
+
+def sequence_text_to_filename(seq_name, index, text):
+    """
+    >>> sequence_text_to_filename("blahabla", 21, "what's up fboraa?")
+    blahabla-021-whats-up-fboraa.wav
+    """
+    fn = "%s-%03d-%s.wav" % (seq_name, index, slugify(text)[:20])
+    return fn
+
+
+def do_recordings(button):
+    for n, seq_name, missing in button.find_missing_audio():
+        print " * missing audio for these lines in sequence '%s'" % seq_name
+        seq = n.get_sequence(seq_name)
+
+        for line in missing:
+            print "    - \"%s\"" % seq[line].get('text')
+
+        for line in missing:
+            print "Please say \"%s\"..." % seq[line].get('text')
+            need_audio = True
+            while need_audio:
+                raw_input("press any key when ready")
+                sample_width, data = record()
+                print("playing back sample...")
+                play_back(data, sample_width)
+                x = raw_input("Is this ok? [yn]")
+                if x == 'y':
+                    need_audio = False
+                    # TODO generate filename with correct path
+                    fn = sequence_text_to_filename(seq_name, line, seq[line].get('text'))
+                    tmp_file = os.path.join(n.basedir, fn)
+                    save_to_file(tmp_file, sample_width, data)
+                    n.save_audio(seq_name, line, fn)
+
+if __name__ == '__main__':
+    mr_button = MrButton()
+    mr_button.push_button()
+
+    do_recordings(mr_button)

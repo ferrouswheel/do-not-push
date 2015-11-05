@@ -1,10 +1,9 @@
 sequences:
-    policeman:
-        - audio: 001-hello.mp3
-          text: "I am like a policeman, trying to maintain order!"
-        - audio: 002-hello.mp3
-          text: "So stop pushing me or I'll have to get lawful on yo ass"
+  policeman:
+  - {audio: policeman-000-i-am-like-a-policema.mp3, text: 'I am like a policeman,
+      trying to maintain order!'}
+  - {audio: policeman-001-so-stop-pushing-me-o.mp3, text: So stop pushing me or I'll
+      have to get lawful on yo ass}
 transitions:
-    button:
-        - sequence: policeman
-          weight: 1
+  button:
+  - {sequence: policeman, weight: 1}
