@@ -1,0 +1,26 @@
+sequences:
+  pushmybutton:
+      - audio:
+        text: "Oh I think I'm starting to like this."
+      - audio:
+        text: "Push my button."
+      - audio:
+        text: "Yeah baby."
+      - audio:
+        text: "You know what I like."
+      - audio:
+        text: "Oh yeah"
+      - audio:
+        text: "Ooh ooh oohh"
+      - audio:
+        text: "Grrnnngh"
+      - audio:
+        text: "I need a cigarette"
+      - audio:
+        text: "Was it as good for you as it was for me?"
+transitions:
+  button:
+    - sequence: pushmybutton
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

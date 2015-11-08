@@ -90,4 +90,3 @@ transitions:
   - {dir: authority, weight: 1}
   timeout:
   - {interval: 60, sequence: where_are_you, weight: 1}
-  - {dir: .., weight: 1}

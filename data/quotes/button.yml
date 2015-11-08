@@ -1,0 +1,43 @@
+sequences:
+  getcreative:
+      - audio:
+        text: "Let’s get creative!"
+      - audio:
+        text: "Now let’s all agree to never be creative again!"
+      - audio:
+        text: "GREEN IS NOT A CREATIVE COLOR!"
+  internet:
+      - audio:
+        text: "What is the biggest thing in the world?"
+      - audio:
+        text: "If only there was a way to learn more about the world."
+      - audio:
+        text: "Yes, if only there was someway to find more about this."
+  computer:
+      - audio:
+        text: "I’m a computery guy."
+      - audio:
+        text: "Clever."
+      - audio:
+        text: "A very clevery guy."
+      - audio:
+        text: "I’d like to be as smart as a computer."
+      - audio:
+        text: "Do you like cows or goats?"
+      - audio:
+        text: "Wow, we’re all computery."
+  firefly:
+      - audio:
+        text: "I can kill you with my brain"
+      - audio:
+        text: "Hands of blue. Two by two."
+transitions:
+  button:
+    - sequence: getcreative
+      weight: 1
+    - sequence: internet
+      weight: 1
+    - sequence: computer
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

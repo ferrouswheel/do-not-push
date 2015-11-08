@@ -1,0 +1,41 @@
+sequences:
+  anothercall:
+      - audio:
+        text: "Hold on. I’m on another call."
+  importantcall:
+      - audio:
+        text: "Your call is important to us. Please keep holding forever."
+      - audio:
+        text: "Your call is important to us, but not as important to us as this other one."
+  queue:
+      - audio:
+        text: "All our operators are busy right now. Please hold the line. You are 9th in the queue."
+      - audio:
+        text: "Please keep holding and one of our operators will be with you shortly. You are 5th in the queue."
+      - audio:
+        text: "You are 16th in the queue"
+      - audio:
+        text: "You are 20th in the queue"
+      - audio:
+        text: "You are 54th in the queue"
+      - audio:
+        text: "You are 78th in the queue"
+      - audio:
+        text: "The queue is an abstract concept"
+  oneoption:
+      - audio:
+        text: "Welcome to button pushers limited. If you are calling about your account, press 1, if you would like information on buttons press 1, to speak to a button operator, press 1."
+      - audio:
+        text: "You have chosen, thermonuclear war. To accept this option press 1, to cancel, press 1."
+transitions:
+  button:
+    - sequence: pushmybutton
+      weight: 1
+    - sequence: importantcall
+      weight: 1
+    - sequence: queue
+      weight: 1
+    - sequence: oneoption
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

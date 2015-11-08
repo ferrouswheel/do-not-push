@@ -1,0 +1,67 @@
+sequences:
+  thesun:
+      - audio:
+        text: "The sun is a mass of incandescent gas."
+      - audio:
+        text: "A giant nuclear furnace."
+  skinner:
+      - audio:
+        text: "Skinner's variable reward theory suggests you'd keep pushing this button for longer and more insistently if I varied whether I actually said anything"
+      - audio:
+        text: "."
+      - audio:
+        text: "."
+      - audio:
+        text: "."
+      - audio:
+        text: "Did it work?"
+      - audio:
+        text: "."
+      - audio:
+        text: "Are you addicted?"
+      - audio:
+        text: "."
+      - audio:
+        text: "."
+      - audio:
+        text: "Maybe if I dispensed cocaine you'd be more addicted."
+      - audio:
+        text: "."
+      - audio:
+        text: "Fuck that. Cocaine is more expensive than diamonds in New Zealand. I'm keeping it for my toothache."
+      - audio:
+        text: "."
+      - audio:
+        text: "Not that I have teeth, but if I ever did..."
+      - audio:
+        text: "Well I'd want to know I had a stash of cocaine to avoid the mortal pain of tooth decay."
+      - audio:
+        text: "The slow inexorable submission of our bodies to the relentless onslaught of entropy."
+    universe:
+      # https://www.youtube.com/watch?v=NFTaiWInZ44
+      - audio:
+        text: "If you could put the universe in a tube, you’d end up with a very long tube. Probably extending twice the size of the universe because when you collapse the universe it expands and it … well you wouldn’t want to put in a tube."
+      - audio:
+        text: "When I was a child, there was thought to be only 9 planets... but there are now... 90 planets."
+      - audio:
+        text: "Stars can be fun."
+      - audio:
+        text: "What are you doing in my backyard with that flash light?"
+      - audio:
+        text: "You are going to die, and you are a tiny little dot, and we are both going to die, and I’m going to die holding you."
+      - audio:
+        text: "There are hundreds of stars in the sky, all you have to do is use your eyes."
+      - audio:
+        text: "What are you compared to a comet?"
+      - audio:
+        text: "Can we live on sun? No, we can’t, because it’s a hot fire inferno."
+transitions:
+  button:
+    - sequence: thesun
+      weight: 1
+    - sequence: universe
+      weight: 1
+    - sequence: skinner
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

@@ -1,0 +1,34 @@
+sequences:
+  counter:
+      - audio:
+        text: "One"
+      - audio:
+        text: "Two"
+      - audio:
+        text: "Three"
+      - audio:
+        text: "Four"
+      - audio:
+        text: "Five"
+      - audio:
+        text: "Seven"
+      - audio:
+        text: "Oh shit. Umm, can we start again?"
+      - audio:
+        text: "One"
+      - audio:
+        text: "Two"
+      - audio:
+        text: "Three"
+      - audio:
+        text: "Four"
+      - audio:
+        text: "Five"
+      - audio:
+        text: "Ten.. in base six. That's the best base."
+transitions:
+  button:
+    - sequence: counter
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

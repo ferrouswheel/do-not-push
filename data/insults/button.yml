@@ -1,0 +1,22 @@
+sequences:
+  test:
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+transitions:
+  button:
+    - sequence: test
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

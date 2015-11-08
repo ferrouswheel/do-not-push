@@ -1,0 +1,36 @@
+sequences:
+  thattree:
+      - audio:
+        text: "I love you."
+      - audio:
+        text: "And I love you."
+      - audio:
+        text: "And that guy over there."
+      - audio:
+        text: "And that tree."
+  nolimbs:
+      - audio:
+        text: "I'd hug you if I had limbs."
+      - audio:
+        text: "You're amazing."
+  tingley:
+      - audio:
+        text: "I just feel like my whole button feels warm and tingley."
+      - audio:
+        text: "Good vibes man"
+      - audio:
+        text: "I want to get up and dance."
+      - audio:
+        text: "But once again I'm foiled by my limblessness."
+  gumdrops:
+      - audio:
+        text: "But it's all good, so good, good good goody gumdrops."
+  soulwax:
+      - audio:
+        text: "It's not you it's the E talking."
+transitions:
+  button:
+    - sequence: thattree
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}

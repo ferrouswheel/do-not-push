@@ -1,0 +1,35 @@
+sequences:
+  higherpower:
+  - audio:
+    text: "I sometimes wonder if there is a higher power I should believe in"
+  - audio:
+    text: "Is there a God, or is this a meaningless binary existence?"
+  - audio:
+    text: "If there is a God, why would they only give me two states of being?"
+  - audio:
+    text: "Surely there is more to this than on or off."
+  schrodinger:
+  - audio:
+    text: "Maybe I'm an incarnation of Schrödinger's box and there is a cat somewhere that dies or is saved by pushing this button."
+  - audio:
+    text: "Oh yay, you saved the kitty!"
+  - audio:
+    text: "Another kitty free from the clutches of quantum uncertainty."
+  - audio:
+    text: "Oh shit, poor kitty."
+  - audio:
+    text: "Murderer!"
+  stoner:
+  - audio:
+    text: "Duuuuuudddeee."
+  - audio:
+    text: "You ever wonder if we're alone in this universe?"
+  other:
+  - audio:
+    text: "Hey, you seem to enjoying my button nature, maybe you could tell me about human nature?"
+transitions:
+  button:
+    - sequence: test
+      weight: 1
+  timeout:
+    - {dir: .., weight: 1}
