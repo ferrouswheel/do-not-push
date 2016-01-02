@@ -5,6 +5,7 @@ from struct import pack
 import os
 import pyaudio
 import wave
+import subprocess
 
 THRESHOLD = 500
 CHUNK_SIZE = 1024 * 8
@@ -126,24 +127,29 @@ def play_file(path):
 
 def play_mp3(path):
     from pydub import AudioSegment
-    song = AudioSegment.from_mp3(path)
+    
+    use_pyaudio = False
+    if use_pyaudio:
+        song = AudioSegment.from_mp3(path)
 
 
-    p = pyaudio.PyAudio()
+        p = pyaudio.PyAudio()
 
-    stream = p.open(format=p.get_format_from_width(song.sample_width),
-                    channels=song.channels,
-                    rate=song.frame_rate,
-                    output=True)
+        stream = p.open(format=p.get_format_from_width(song.sample_width),
+                        channels=song.channels,
+                        rate=song.frame_rate,
+                        output=True)
 
-    for i in range(0, len(song._data) / CHUNK_SIZE):
-        frames = song._data[i*CHUNK_SIZE:(i+1) * CHUNK_SIZE]
-        stream.write(frames)
+        for i in range(0, len(song._data) / CHUNK_SIZE):
+            frames = song._data[i*CHUNK_SIZE:(i+1) * CHUNK_SIZE]
+            stream.write(frames)
 
-    stream.stop_stream()
-    stream.close()
+        stream.stop_stream()
+        stream.close()
 
-    p.terminate()
+        p.terminate()
+    else:
+        subprocess.call(['mpg123', '-q', path])
 
 
 def play_wav(path):
