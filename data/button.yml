@@ -88,5 +88,7 @@ transitions:
   - {sequence: art-inferiority, weight: 1}
   - {sequence: consent, weight: 1}
   - {dir: authority, weight: 1}
+  - {dir: call-centre, weight: 1}
+  - {dir: counting, weight: 1}
   timeout:
   - {interval: 60, sequence: where_are_you, weight: 1}
