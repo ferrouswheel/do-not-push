@@ -1,8 +1,16 @@
 import argparse
 import sys
+import time
+
+try:
+    import RPi.GPIO as GPIO
+    have_gpio = True
+except ImportError:
+    have_gpio = False
 
 from button import MrButton, AudioPhraseOutput, do_recordings, report_missing, record_phrase
 
+BUTTON_PIN = 18
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -45,7 +53,17 @@ if __name__ == '__main__':
 
         mr_button.phrase_handler = AudioPhraseOutput()
 
-        while(1):
-            mr_button.push_button()
+        if have_gpio:
+            def call_on_me(channel):
+                mr_button.push_button()
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+            GPIO.add_event_detect(BUTTON_PIN,
+                    GPIO.FALLING, callback=call_on_me, bouncetime=300)
+            while(1):
+                time.sleep(5)
+        else:
+            while(1):
+                mr_button.push_button()
 
     sys.exit(0)
