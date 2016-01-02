@@ -1,0 +1,6 @@
+PyAudio==0.2.9
+PyYAML==3.11
+Unidecode==0.04.18
+pydub==0.15.0
+python-slugify==1.1.4
+wsgiref==0.1.2
