@@ -1,7 +1,7 @@
 import yaml
 
 import os
-import sys
+import glob
 
 import os.path
 import random
@@ -48,9 +48,16 @@ def record_phrase(n, seq_name, seq, line):
             n.save_audio(seq_name, line, fn)
 
 def report_missing(button):
+    total = 0
+    total_seq = 0
     for n, seq_name, missing in button.find_missing_audio():
+        total_seq += 1
+        total += len(missing)
         seq = n.get_sequence(seq_name)
         _report_missing(seq_name, seq, missing)
+
+    print "Total sequences with missing phrases: %d" % total_seq
+    print "Total phrases missing: %d" % total
 
 def _report_missing(seq_name, seq, missing):
     print " * missing audio for these lines in sequence '%s'" % seq_name
@@ -176,10 +183,14 @@ class Narrative(object):
     def _load_children(self, transition_type):
         parent_found = False
         self.transitions.setdefault(transition_type, [])
+
+        dirs_used = []
+
         for seq in self.transitions[transition_type]:
             if 'dir' in seq:
                 p = os.path.join(self.basedir, seq['dir'])
                 if is_subdir(self.basedir, p):
+                    dirs_used.append(p)
                     seq['narrative'] = Narrative(os.path.join(p, config_file), self)
                 elif seq['dir'] == '..':
                     # parent
@@ -187,6 +198,7 @@ class Narrative(object):
                     seq['narrative'] = self.parent
                 else:
                     print p, "is not a subdir"
+
         if not parent_found and self.parent:
             # add transition back to parent if not explicitly defined
             self.transitions[transition_type].append({
@@ -194,6 +206,23 @@ class Narrative(object):
                 'weight': 1,
                 'narrative': self.parent,
                 })
+
+        if transition_type == 'button':
+            # scan all subdirs for button.yml
+            for f in os.listdir(self.basedir):
+                if f in dirs_used:
+                    continue
+                if not os.path.isdir(os.path.join(self.basedir, f)):
+                    continue
+                fn = os.path.join(self.basedir, f, 'button.yml')
+                if os.path.isfile(fn):
+                    #print "Implicitly loading subdir %s with button.yml" % f
+                    seq = {
+                        'dir': f,
+                        'narrative': Narrative(fn, self),
+                        'weight': 1,
+                    }
+                    self.transitions['button'].append(seq)
 
 
     def next_phrase(self, sequence_phrase, visited, cache, trigger='button'):
