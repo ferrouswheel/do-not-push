@@ -1,7 +1,7 @@
 sequences:
   anothercall:
       - audio:
-        text: "Hold on. I’m on another call."
+        text: "Hold on. I'm on another call."
   importantcall:
       - audio:
         text: "Your call is important to us. Please keep holding forever."

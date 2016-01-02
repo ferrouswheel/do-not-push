@@ -37,10 +37,10 @@ sequences:
         text: "Well I'd want to know I had a stash of cocaine to avoid the mortal pain of tooth decay."
       - audio:
         text: "The slow inexorable submission of our bodies to the relentless onslaught of entropy."
-    universe:
-      # https://www.youtube.com/watch?v=NFTaiWInZ44
+    # https://www.youtube.com/watch?v=NFTaiWInZ44
+  universe:
       - audio:
-        text: "If you could put the universe in a tube, you’d end up with a very long tube. Probably extending twice the size of the universe because when you collapse the universe it expands and it … well you wouldn’t want to put in a tube."
+        text: "If you could put the universe in a tube, you'd end up with a very long tube. Probably extending twice the size of the universe because when you collapse the universe it expands and it ... well you wouldn't want to put in a tube."
       - audio:
         text: "When I was a child, there was thought to be only 9 planets... but there are now... 90 planets."
       - audio:
@@ -48,13 +48,13 @@ sequences:
       - audio:
         text: "What are you doing in my backyard with that flash light?"
       - audio:
-        text: "You are going to die, and you are a tiny little dot, and we are both going to die, and I’m going to die holding you."
+        text: "You are going to die, and you are a tiny little dot, and we are both going to die, and I'm going to die holding you."
       - audio:
         text: "There are hundreds of stars in the sky, all you have to do is use your eyes."
       - audio:
         text: "What are you compared to a comet?"
       - audio:
-        text: "Can we live on sun? No, we can’t, because it’s a hot fire inferno."
+        text: "Can we live on sun? No, we can't, because it's a hot fire inferno."
 transitions:
   button:
     - sequence: thesun
