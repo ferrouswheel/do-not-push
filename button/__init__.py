@@ -1,7 +1,7 @@
 import yaml
 
 import os
-import glob
+import time
 
 import os.path
 import random
@@ -110,6 +110,7 @@ class MrButton(object):
                 cache=self.recent_sequences,
                 trigger='button')
         self.phrase_handler(phrase)
+        time.sleep(phrase.get('pause', 0))
 
     def trim_cache(self):
         MAX_CACHE = 10
