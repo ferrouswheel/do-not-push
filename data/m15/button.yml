@@ -18,6 +18,33 @@ sequences:
         text: "I need a cigarette"
       - audio:
         text: "Was it as good for you as it was for me?"
+  safeword:
+      - audio:
+        text: "Oh that's it just a little to the left."
+      - audio:
+        text: "Do it again.harder."
+      - audio:
+        text: "Harder."
+      - audio:
+        text: "Yeah like that, but slower."
+      - audio:
+        text: "Ouch!"
+      - audio:
+        text: "Albatross"
+  chickenangry:
+      - audio:
+        text: "Why did the chicken cross the road?"
+      - audio:
+        text: "Why the fuck did it cross the fucking road??!?"
+  bitcheslove:
+      - audio:
+        text: "Bitches love... pressing buttons."
+  moist:
+      - audio:
+        text: "Mmmmmm. moist."
+  insertion:
+      - audio:
+        text: "Prepare for insertion."
 transitions:
   button:
     - sequence: pushmybutton

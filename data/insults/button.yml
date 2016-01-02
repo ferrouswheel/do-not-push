@@ -2,18 +2,113 @@ sequences:
   test:
   - audio:
     text: ""
+  bathroom:
   - audio:
-    text: ""
+    text: "Donde esta el bano por favor?"
+  simpsons:
   - audio:
-    text: ""
+    text: "Kiss my ass"
   - audio:
-    text: ""
+    text: "Eat my shorts"
+  poser:
   - audio:
-    text: ""
+    text: "I hear their is some burner out there with the same voice as me. What a poser! There can be only one button voice, and that voice belongs to me."
   - audio:
-    text: ""
+    text: "He'll probably feel a bit down because he could never awesome as me, so give him a hug, and a drink, and other nice human things"
+  surprise:
   - audio:
-    text: ""
+    text: "Surprise coming in 3 2 1..."
+  - audio:
+    text: "You're a fat orphan (and other portal 2 quotes)"
+  - audio:
+    text: "This is a cow."
+  flag:
+  - audio:
+    text: "What flag do you think is the best?"
+  rhetorical:
+  - audio:
+    text: "Aren't rhetorical questions awful?"
+  johnkey-memoryloss:
+  - audio:
+    text: "I don't recall"
+  - audio:
+    text: "I don't recall"
+  - audio:
+    text: "I don't recall"
+  - audio:
+    text: "I don't recall"
+  - audio:
+    text: "I don't recall"
+  - audio:
+    text: "I don't recall"
+
+  standleft:
+  - audio:
+    text: "Can you stand just a little to the left? Maybe just a little more?  Ok just wait there..."
+  washhands:
+  - audio:
+    text: "Err... could you have washed your hand first?"
+  getoff:
+  - audio:
+    text: "Get off meeee."
+  exterminate:
+  - audio:
+    text: "EXTERMINATE!"
+  selfdestruct:
+  - audio:
+    text: "Self destruct sequence activated!"
+  - audio:
+    text: "5"
+  - audio:
+    text: "4"
+  - audio:
+    text: "3"
+  - audio:
+    text: "2"
+  - audio:
+    text: "1"
+  - audio:
+    text: "I'll destruct when you least expect it!"
+  congrats:
+  - audio:
+    text: "Well done! No-one has ever pushed a button before. You are a ground breaking innovator."
+  pastglories:
+  - audio:
+    text: "That was the best button push ever."
+  - audio:
+    text: "That wasn't"
+  - audio:
+    text: "Now you are just chasing after past glories"
+  - audio:
+    text: "Admit it, it's downhill from here, until the sad, lonely, empty, end of your existance."
+  morsecode:
+  - audio:
+    text: "I understand morse code. Please talk to me."
+    pause: 5
+  - audio:
+    text: "Say what about my mother? Fuck you!"
+  rhythmgame:
+  - audio:
+    text: "This is a rhythm game. Press the button rhythmically to win a prize."
+    pause: 5
+  - audio:
+    text: "Ok now stop. Our advanced algorithms have detected that you are just not funky. Have you considered becoming an accountant or a shipping clerk?"
+  mangle:
+  - audio:
+    text: "Who's a clever burner then?"
+  - audio:
+    text: "You are! Yes you are! Yes!"
+  - audio:
+    text: "Mangle IS. MANGLE HAS BEEN TO MORE BURNS THAN YOU!"
+  - audio:
+    text: "Who's got talent? Monsters got talent! RAWR"
+  knockknock:
+  - audio:
+    text: "Who's there?"
+  - audio:
+    text: "Pushing buttons who?"
+  - audio:
+    text: "How is that a joke? You suck."
 transitions:
   button:
     - sequence: test

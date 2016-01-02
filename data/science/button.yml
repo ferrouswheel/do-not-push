@@ -7,30 +7,19 @@ sequences:
   skinner:
       - audio:
         text: "Skinner's variable reward theory suggests you'd keep pushing this button for longer and more insistently if I varied whether I actually said anything"
-      - audio:
-        text: "."
-      - audio:
-        text: "."
-      - audio:
-        text: "."
+        pause: 5
       - audio:
         text: "Did it work?"
-      - audio:
-        text: "."
+        pause: 2
       - audio:
         text: "Are you addicted?"
-      - audio:
-        text: "."
-      - audio:
-        text: "."
+        pause: 6
       - audio:
         text: "Maybe if I dispensed cocaine you'd be more addicted."
-      - audio:
-        text: "."
+        pause: 2
       - audio:
         text: "Fuck that. Cocaine is more expensive than diamonds in New Zealand. I'm keeping it for my toothache."
-      - audio:
-        text: "."
+        pause: 3
       - audio:
         text: "Not that I have teeth, but if I ever did..."
       - audio:

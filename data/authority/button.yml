@@ -4,6 +4,9 @@ sequences:
       trying to maintain order!'}
   - {audio: policeman-001-so-stop-pushing-me-o.mp3, text: So stop pushing me or I'll
       have to get lawful on yo ass}
+  prison:
+  - audio:
+    text: "You're going straight to prison."
 transitions:
   button:
   - {sequence: policeman, weight: 1}

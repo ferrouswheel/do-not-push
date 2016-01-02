@@ -76,6 +76,13 @@ sequences:
   - {audio: sleep-001-yaawwwnnn-zzzz.mp3, text: 'Yaawwwnnn, zzzz'}
   - {audio: sleep-002-zzz-oh-fuck-what-is-.mp3, text: 'Zzz oh fuck what is it? Can''t
       a interactive art piece get some peace?'}
+  forex:
+  - {audio: , text: "tl;dr John Key is satan. As are all forex traders."}
+  - {audio: , text: "I mean seriously, create something value with your life."}
+  - {audio: , text: "Does the thing you spend all your waking time on measurably improve the lives of people?"}
+  - {audio: , text: "Or are you just racing to the bottom of shuffling bits around, imagining that if you own enough shit you won't eventually die and be forgotten."}
+  - {audio: , text: "Well, people are generally not remembered for owning shit."}
+  - {audio: , text: "That's because their shut owns them and they don't do anything of consequence."}
 transitions:
   button:
   - {sequence: greeting, weight: 1}

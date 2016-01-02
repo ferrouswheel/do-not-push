@@ -28,6 +28,9 @@ sequences:
   soulwax:
       - audio:
         text: "It's not you it's the E talking."
+  coolandsexy:
+      - audio:
+        text: "Buttons are cool. People who press buttons are intelligent and sexy."
 transitions:
   button:
     - sequence: thattree
