@@ -128,12 +128,24 @@ def play_file(path):
 def play_mp3(path):
     from pydub import AudioSegment
     
-    use_pyaudio = False
+    use_pyaudio = True
     if use_pyaudio:
         song = AudioSegment.from_mp3(path)
 
+        print "song rate", song.frame_rate
+        print "channels", song.channels
+        print "sample format", song.sample_width
 
         p = pyaudio.PyAudio()
+        # Learn what your OS+Hardware can do
+        defaultCapability = p.get_default_host_api_info()
+        print "default capability", defaultCapability
+
+        # See if you can make it do what you want
+        isSupported = p.is_format_supported(output_format=pyaudio.paInt8, output_channels=1, rate=22050, output_device=0)
+        print "supported?", isSupported
+        isSupported = p.is_format_supported(output_format=song.sample_width, output_channels=song.channels, rate=song.frame_rate, output_device=0)
+        print "supported?", isSupported
 
         stream = p.open(format=p.get_format_from_width(song.sample_width),
                         channels=song.channels,
