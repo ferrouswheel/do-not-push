@@ -60,10 +60,11 @@ if __name__ == '__main__':
             GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
             #GPIO.add_event_detect(BUTTON_PIN,
                     #GPIO.FALLING, callback=call_on_me, bouncetime=300)
+            #while(1):
+                #time.sleep(5)
             while(1):
                 GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING)
                 call_on_me(BUTTON_PIN)
-                time.sleep(5)
         else:
             while(1):
                 mr_button.push_button()
