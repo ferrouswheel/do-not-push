@@ -29,7 +29,7 @@ sequences:
     text: "Hey, you seem to enjoying my button nature, maybe you could tell me about human nature?"
 transitions:
   button:
-    - sequence: test
+    - sequence: higherpower
       weight: 1
   timeout:
     - {dir: .., weight: 1}

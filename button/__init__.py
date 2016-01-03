@@ -82,7 +82,7 @@ class PhraseOutput(object):
 
 class ConsolePhraseOutput(PhraseOutput):
     def __call__(self, phrase):
-        print "Mr Button says: ", phrase.get("text", "")
+        print "Mr Button says:", phrase.get("text", "")
 
 
 class AudioPhraseOutput(ConsolePhraseOutput):
