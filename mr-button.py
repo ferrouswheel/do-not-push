@@ -8,7 +8,7 @@ try:
 except ImportError:
     have_gpio = False
 
-from button import MrButton, AudioPhraseOutput, do_recordings, report_missing, record_phrase
+from button import MrButton, AudioPhraseOutput, do_recordings, report_missing, record_phrase, ReportingOutput
 
 BUTTON_PIN = 18
 AMP_PIN = 23
@@ -27,6 +27,8 @@ if __name__ == '__main__':
                         help="show all sequences in data directory")
     parser.add_argument("-p", "--list-phrases", action="store",
                         help="show all phrases for sequence")
+    parser.add_argument("-b", "--benchmark", action="store_true",
+                        help="run through the state machine and report stats")
 
     args = parser.parse_args()
 
@@ -35,10 +37,14 @@ if __name__ == '__main__':
 
     if args.list_sequences:
         seqs = mr_button.root_narrative.all_sequences()
+        sequence_names = []
         for n, s in seqs:
-            print '"%s"' % s[0]
-            for i, phrase in enumerate(s[1]):
-                print ' %d - %s' % (i, phrase.get('text'))
+            print n, s[0]
+            sequence_names.append(s[0])
+        print "--"
+
+        #for i in sorted(sequence_names):
+            #print '%s' % i
     elif args.list_phrases:
         seq = mr_button.get_sequence(args.list_phrases)
         for i, phrase in enumerate(seq):
@@ -49,6 +55,15 @@ if __name__ == '__main__':
         record_phrase(n, seq_name, seq, int(index))
     elif args.record_missing:
         do_recordings(mr_button)
+    elif args.benchmark:
+        mr_button.print_tree()
+        reporter = ReportingOutput()
+        mr_button.phrase_handler = reporter
+        mr_button.ignore_sleeps = True
+        for i in range(0,10000):
+            mr_button.push_button()
+
+        reporter.print_summary()
     else:
         report_missing(mr_button)
 
