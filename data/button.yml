@@ -37,6 +37,20 @@ sequences:
   - {audio: failure-002-arrrrgh-stop-it.mp3, text: 'Arrrrgh, stop it.'}
   - {audio: failure-003-quit-it.mp3, text: Quit it.}
   - {audio: failure-004-ignore-ignore.mp3, text: Ignore ignore}
+  forex:
+  - {audio: forex-000-tl-dr-john-key-is-sa.mp3, text: tl;dr John Key is satan. As
+      are all forex traders.}
+  - {audio: forex-001-i-mean-seriously-cre.mp3, text: 'I mean seriously, create something
+      value with your life.'}
+  - {audio: forex-002-does-the-thing-you-s.mp3, text: 'Does the thing you spend all
+      your waking time on measurably improve the lives of people?'}
+  - {audio: forex-003-or-are-you-just-raci.mp3, text: 'Or are you just racing to the
+      bottom of shuffling bits around, imagining that if you own enough shit you won''t
+      eventually die and be forgotten.'}
+  - {audio: forex-004-well-people-are-gene.mp3, text: 'Well, people are generally
+      not remembered for owning shit.'}
+  - {audio: forex-005-thats-because-their-.mp3, text: That's because their shut owns
+      them and they don't do anything of consequence.}
   greeting:
   - {audio: greeting-000-hello-there.mp3, text: Hello there}
   - {audio: greeting-001-i-am-a-button.mp3, text: I am a button}
@@ -76,13 +90,6 @@ sequences:
   - {audio: sleep-001-yaawwwnnn-zzzz.mp3, text: 'Yaawwwnnn, zzzz'}
   - {audio: sleep-002-zzz-oh-fuck-what-is-.mp3, text: 'Zzz oh fuck what is it? Can''t
       a interactive art piece get some peace?'}
-  forex:
-  - {audio: , text: "tl;dr John Key is satan. As are all forex traders."}
-  - {audio: , text: "I mean seriously, create something value with your life."}
-  - {audio: , text: "Does the thing you spend all your waking time on measurably improve the lives of people?"}
-  - {audio: , text: "Or are you just racing to the bottom of shuffling bits around, imagining that if you own enough shit you won't eventually die and be forgotten."}
-  - {audio: , text: "Well, people are generally not remembered for owning shit."}
-  - {audio: , text: "That's because their shut owns them and they don't do anything of consequence."}
 transitions:
   button:
   - {sequence: greeting, weight: 1}

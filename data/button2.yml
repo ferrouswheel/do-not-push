@@ -1,0 +1,21 @@
+sequences:
+  misc:
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+  - audio:
+    text: ""
+transitions:
+  button:
+  - {sequence: greeting, weight: 1}

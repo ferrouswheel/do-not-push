@@ -1,35 +1,32 @@
 sequences:
   higherpower:
-  - audio:
-    text: "I sometimes wonder if there is a higher power I should believe in"
-  - audio:
-    text: "Is there a God, or is this a meaningless binary existence?"
-  - audio:
-    text: "If there is a God, why would they only give me two states of being?"
-  - audio:
-    text: "Surely there is more to this than on or off."
-  schrodinger:
-  - audio:
-    text: "Maybe I'm an incarnation of Schrodinger's box and there is a cat somewhere that dies or is saved by pushing this button."
-  - audio:
-    text: "Oh yay, you saved the kitty!"
-  - audio:
-    text: "Another kitty free from the clutches of quantum uncertainty."
-  - audio:
-    text: "Oh shit, poor kitty."
-  - audio:
-    text: "Murderer!"
-  stoner:
-  - audio:
-    text: "Duuuuuudddeee."
-  - audio:
-    text: "You ever wonder if we're alone in this universe?"
+  - {audio: higherpower-000-i-sometimes-wonder-i.mp3, text: I sometimes wonder if
+      there is a higher power I should believe in}
+  - {audio: higherpower-001-is-there-a-god-or-is.mp3, text: 'Is there a God, or is
+      this a meaningless binary existence?'}
+  - {audio: higherpower-002-if-there-is-a-god-wh.mp3, text: 'If there is a God, why
+      would they only give me two states of being?'}
+  - {audio: higherpower-003-surely-there-is-more.mp3, text: Surely there is more to
+      this than on or off.}
   other:
-  - audio:
-    text: "Hey, you seem to enjoying my button nature, maybe you could tell me about human nature?"
+  - {audio: other-000-hey-you-seem-to-enjo.mp3, text: 'Hey, you seem to enjoying my
+      button nature, maybe you could tell me about human nature?'}
+  schrodinger:
+  - {audio: schrodinger-000-maybe-im-an-incarnat.mp3, text: Maybe I'm an incarnation
+      of Schrodinger's box and there is a cat somewhere that dies or is saved by pushing
+      this button.}
+  - {audio: schrodinger-001-oh-yay-you-saved-the.mp3, text: 'Oh yay, you saved the
+      kitty!'}
+  - {audio: schrodinger-002-another-kitty-free-f.mp3, text: Another kitty free from
+      the clutches of quantum uncertainty.}
+  - {audio: schrodinger-003-oh-shit-poor-kitty.mp3, text: 'Oh shit, poor kitty.'}
+  - {audio: schrodinger-004-murderer.mp3, text: Murderer!}
+  stoner:
+  - {audio: stoner-000-duuuuuudddeee.mp3, text: Duuuuuudddeee.}
+  - {audio: stoner-001-you-ever-wonder-if-w.mp3, text: 'You ever wonder if we''re
+      alone in this universe?'}
 transitions:
   button:
-    - sequence: higherpower
-      weight: 1
+  - {sequence: higherpower, weight: 1}
   timeout:
-    - {dir: .., weight: 1}
+  - {dir: .., weight: 1}

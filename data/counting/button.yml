@@ -1,34 +1,22 @@
 sequences:
   counter:
-      - audio:
-        text: "One"
-      - audio:
-        text: "Two"
-      - audio:
-        text: "Three"
-      - audio:
-        text: "Four"
-      - audio:
-        text: "Five"
-      - audio:
-        text: "Seven"
-      - audio:
-        text: "Oh shit. Umm, can we start again?"
-      - audio:
-        text: "One"
-      - audio:
-        text: "Two"
-      - audio:
-        text: "Three"
-      - audio:
-        text: "Four"
-      - audio:
-        text: "Five"
-      - audio:
-        text: "Ten.. in base six. That's the best base."
+  - {audio: counter-000-one.mp3, text: One}
+  - {audio: counter-001-two.mp3, text: Two}
+  - {audio: counter-002-three.mp3, text: Three}
+  - {audio: counter-003-four.mp3, text: Four}
+  - {audio: counter-004-five.mp3, text: Five}
+  - {audio: counter-005-seven.mp3, text: Seven}
+  - {audio: counter-006-oh-shit-umm-can-we-s.mp3, text: 'Oh shit. Umm, can we start
+      again?'}
+  - {audio: counter-007-one.mp3, text: One}
+  - {audio: counter-008-two.mp3, text: Two}
+  - {audio: counter-009-three.mp3, text: Three}
+  - {audio: counter-010-four.mp3, text: Four}
+  - {audio: counter-011-five.mp3, text: Five}
+  - {audio: counter-012-ten-in-base-six-that.mp3, text: Ten.. in base six. That's
+      the best base.}
 transitions:
   button:
-    - sequence: counter
-      weight: 1
+  - {sequence: counter, weight: 1}
   timeout:
-    - {dir: .., weight: 1}
+  - {dir: .., weight: 1}

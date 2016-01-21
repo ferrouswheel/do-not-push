@@ -1,43 +1,32 @@
 sequences:
-  getcreative:
-      - audio:
-        text: "Let's get creative!"
-      - audio:
-        text: "Now let's all agree to never be creative again!"
-      - audio:
-        text: "GREEN IS NOT A CREATIVE COLOR!"
-  internet:
-      - audio:
-        text: "What is the biggest thing in the world?"
-      - audio:
-        text: "If only there was a way to learn more about the world."
-      - audio:
-        text: "Yes, if only there was someway to find more about this."
   computer:
-      - audio:
-        text: "I'm a computery guy."
-      - audio:
-        text: "Clever."
-      - audio:
-        text: "A very clevery guy."
-      - audio:
-        text: "I'd like to be as smart as a computer."
-      - audio:
-        text: "Do you like cows or goats?"
-      - audio:
-        text: "Wow, we're all computery."
+  - {audio: computer-000-im-a-computery-guy.mp3, text: I'm a computery guy.}
+  - {audio: computer-001-clever.mp3, text: Clever.}
+  - {audio: computer-002-a-very-clevery-guy.mp3, text: A very clevery guy.}
+  - {audio: computer-003-id-like-to-be-as-sma.mp3, text: I'd like to be as smart as
+      a computer.}
+  - {audio: computer-004-do-you-like-cows-or-.mp3, text: 'Do you like cows or goats?'}
+  - {audio: computer-005-wow-were-all-compute.mp3, text: 'Wow, we''re all computery.'}
   firefly:
-      - audio:
-        text: "I can kill you with my brain"
-      - audio:
-        text: "Hands of blue. Two by two."
+  - {audio: firefly-000-i-can-kill-you-with-.mp3, text: I can kill you with my brain}
+  - {audio: firefly-001-hands-of-blue-two-by.mp3, text: Hands of blue. Two by two.}
+  getcreative:
+  - {audio: getcreative-000-lets-get-creative.mp3, text: Let's get creative!}
+  - {audio: getcreative-001-now-lets-all-agree-t.mp3, text: Now let's all agree to
+      never be creative again!}
+  - {audio: getcreative-002-green-is-not-a-creat.mp3, text: GREEN IS NOT A CREATIVE
+      COLOR!}
+  internet:
+  - {audio: internet-000-what-is-the-biggest-.mp3, text: 'What is the biggest thing
+      in the world?'}
+  - {audio: internet-001-if-only-there-was-a-.mp3, text: If only there was a way to
+      learn more about the world.}
+  - {audio: internet-002-yes-if-only-there-wa.mp3, text: 'Yes, if only there was someway
+      to find more about this.'}
 transitions:
   button:
-    - sequence: getcreative
-      weight: 1
-    - sequence: internet
-      weight: 1
-    - sequence: computer
-      weight: 1
+  - {sequence: getcreative, weight: 1}
+  - {sequence: internet, weight: 1}
+  - {sequence: computer, weight: 1}
   timeout:
-    - {dir: .., weight: 1}
+  - {dir: .., weight: 1}

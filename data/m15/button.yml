@@ -1,53 +1,38 @@
 sequences:
-  pushmybutton:
-      - audio:
-        text: "Oh I think I'm starting to like this."
-      - audio:
-        text: "Push my button."
-      - audio:
-        text: "Yeah baby."
-      - audio:
-        text: "You know what I like."
-      - audio:
-        text: "Oh yeah"
-      - audio:
-        text: "Ooh ooh oohh"
-      - audio:
-        text: "Grrnnngh"
-      - audio:
-        text: "I need a cigarette"
-      - audio:
-        text: "Was it as good for you as it was for me?"
-  safeword:
-      - audio:
-        text: "Oh that's it just a little to the left."
-      - audio:
-        text: "Do it again.harder."
-      - audio:
-        text: "Harder."
-      - audio:
-        text: "Yeah like that, but slower."
-      - audio:
-        text: "Ouch!"
-      - audio:
-        text: "Albatross"
-  chickenangry:
-      - audio:
-        text: "Why did the chicken cross the road?"
-      - audio:
-        text: "Why the fuck did it cross the fucking road??!?"
   bitcheslove:
-      - audio:
-        text: "Bitches love... pressing buttons."
-  moist:
-      - audio:
-        text: "Mmmmmm. moist."
+  - {audio: bitcheslove-000-bitches-love-pressin.mp3, text: Bitches love... pressing
+      buttons.}
+  chickenangry:
+  - {audio: chickenangry-000-why-did-the-chicken-.mp3, text: 'Why did the chicken
+      cross the road?'}
+  - {audio: chickenangry-001-why-the-fuck-did-it-.mp3, text: 'Why the fuck did it
+      cross the fucking road??!?'}
   insertion:
-      - audio:
-        text: "Prepare for insertion."
+  - {audio: insertion-000-prepare-for-insertio.mp3, text: Prepare for insertion.}
+  moist:
+  - {audio: moist-000-mmmmmm-moist.mp3, text: Mmmmmm. moist.}
+  pushmybutton:
+  - {audio: pushmybutton-000-oh-i-think-im-starti.mp3, text: Oh I think I'm starting
+      to like this.}
+  - {audio: pushmybutton-001-push-my-button.mp3, text: Push my button.}
+  - {audio: pushmybutton-002-yeah-baby.mp3, text: Yeah baby.}
+  - {audio: pushmybutton-003-you-know-what-i-like.mp3, text: You know what I like.}
+  - {audio: pushmybutton-004-oh-yeah.mp3, text: Oh yeah}
+  - {audio: pushmybutton-005-ooh-ooh-oohh.mp3, text: Ooh ooh oohh}
+  - {audio: pushmybutton-006-grrnnngh.mp3, text: Grrnnngh}
+  - {audio: pushmybutton-007-i-need-a-cigarette.mp3, text: I need a cigarette}
+  - {audio: pushmybutton-008-was-it-as-good-for-y.mp3, text: 'Was it as good for you
+      as it was for me?'}
+  safeword:
+  - {audio: safeword-000-oh-thats-it-just-a-l.mp3, text: Oh that's it just a little
+      to the left.}
+  - {audio: safeword-001-do-it-again-harder.mp3, text: Do it again.harder.}
+  - {audio: safeword-002-harder.mp3, text: Harder.}
+  - {audio: safeword-003-yeah-like-that-but-s.mp3, text: 'Yeah like that, but slower.'}
+  - {audio: safeword-004-ouch.mp3, text: Ouch!}
+  - {audio: safeword-005-albatross.mp3, text: Albatross}
 transitions:
   button:
-    - sequence: pushmybutton
-      weight: 1
+  - {sequence: pushmybutton, weight: 1}
   timeout:
-    - {dir: .., weight: 1}
+  - {dir: .., weight: 1}

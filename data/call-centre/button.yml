@@ -1,41 +1,33 @@
 sequences:
   anothercall:
-      - audio:
-        text: "Hold on. I'm on another call."
+  - {audio: anothercall-000-hold-on-im-on-anothe.mp3, text: Hold on. I'm on another
+      call.}
   importantcall:
-      - audio:
-        text: "Your call is important to us. Please keep holding forever."
-      - audio:
-        text: "Your call is important to us, but not as important to us as this other one."
-  queue:
-      - audio:
-        text: "All our operators are busy right now. Please hold the line. You are 9th in the queue."
-      - audio:
-        text: "Please keep holding and one of our operators will be with you shortly. You are 5th in the queue."
-      - audio:
-        text: "You are 16th in the queue"
-      - audio:
-        text: "You are 20th in the queue"
-      - audio:
-        text: "You are 54th in the queue"
-      - audio:
-        text: "You are 78th in the queue"
-      - audio:
-        text: "The queue is an abstract concept"
+  - {audio: importantcall-000-your-call-is-importa.mp3, text: Your call is important
+      to us. Please keep holding forever.}
+  - {audio: importantcall-001-your-call-is-importa.mp3, text: 'Your call is important
+      to us, but not as important to us as this other one.'}
   oneoption:
-      - audio:
-        text: "Welcome to button pushers limited. If you are calling about your account, press 1, if you would like information on buttons press 1, to speak to a button operator, press 1."
-      - audio:
-        text: "You have chosen, thermonuclear war. To accept this option press 1, to cancel, press 1."
+  - {audio: oneoption-000-welcome-to-button-pu.mp3, text: 'Welcome to button pushers
+      limited. If you are calling about your account, press 1, if you would like information
+      on buttons press 1, to speak to a button operator, press 1.'}
+  - {audio: oneoption-001-you-have-chosen-ther.mp3, text: 'You have chosen, thermonuclear
+      war. To accept this option press 1, to cancel, press 1.'}
+  queue:
+  - {audio: queue-000-all-our-operators-ar.mp3, text: All our operators are busy right
+      now. Please hold the line. You are 9th in the queue.}
+  - {audio: queue-001-please-keep-holding-.mp3, text: Please keep holding and one
+      of our operators will be with you shortly. You are 5th in the queue.}
+  - {audio: queue-002-you-are-16th-in-the-.mp3, text: You are 16th in the queue}
+  - {audio: queue-003-you-are-20th-in-the-.mp3, text: You are 20th in the queue}
+  - {audio: queue-004-you-are-54th-in-the-.mp3, text: You are 54th in the queue}
+  - {audio: queue-005-you-are-78th-in-the-.mp3, text: You are 78th in the queue}
+  - {audio: queue-006-the-queue-is-an-abst.mp3, text: The queue is an abstract concept}
 transitions:
   button:
-    - sequence: anothercall
-      weight: 1
-    - sequence: importantcall
-      weight: 1
-    - sequence: queue
-      weight: 1
-    - sequence: oneoption
-      weight: 1
+  - {sequence: anothercall, weight: 1}
+  - {sequence: importantcall, weight: 1}
+  - {sequence: queue, weight: 1}
+  - {sequence: oneoption, weight: 1}
   timeout:
-    - {dir: .., weight: 1}
+  - {dir: .., weight: 1}

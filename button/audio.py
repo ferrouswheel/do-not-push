@@ -32,10 +32,12 @@ def trim(snd_data):
         snd_started = False
         r = array('h')
 
-        for i in snd_data:
+        for index, i in enumerate(snd_data):
             if not snd_started and abs(i)>THRESHOLD:
                 snd_started = True
-                r.append(i)
+                j = index - 1024
+                if j < 0: j = 0
+                r.extend(snd_data[j:index])
 
             elif snd_started:
                 r.append(i)
