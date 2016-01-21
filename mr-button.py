@@ -11,6 +11,7 @@ except ImportError:
 from button import MrButton, AudioPhraseOutput, do_recordings, report_missing, record_phrase
 
 BUTTON_PIN = 18
+AMP_PIN = 23
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -35,7 +36,7 @@ if __name__ == '__main__':
     if args.list_sequences:
         seqs = mr_button.root_narrative.all_sequences()
         for n, s in seqs:
-            print 'Sequence', s[0]
+            print '"%s"' % s[0]
             for i, phrase in enumerate(s[1]):
                 print ' %d - %s' % (i, phrase.get('text'))
     elif args.list_phrases:
@@ -58,10 +59,25 @@ if __name__ == '__main__':
                 mr_button.push_button()
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+            GPIO.setup(AMP_PIN, GPIO.OUT, initial=0)
+            GPIO.output(AMP_PIN, GPIO.LOW)
             #GPIO.add_event_detect(BUTTON_PIN,
-                    #GPIO.FALLING, callback=call_on_me, bouncetime=300)
+                #GPIO.FALLING, callback=call_on_me, bouncetime=300)
             #while(1):
                 #time.sleep(5)
+            try:
+                while(1):
+                    try:
+                        GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING)
+                        GPIO.output(AMP_PIN, GPIO.HIGH)
+                        call_on_me(BUTTON_PIN)
+                        GPIO.output(AMP_PIN, GPIO.LOW)
+                    except RuntimeError, e:
+                        print e
+            except KeyboardInterrupt:
+                pass
+            finally:
+                GPIO.cleanup()
             while(1):
                 GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING)
                 call_on_me(BUTTON_PIN)
