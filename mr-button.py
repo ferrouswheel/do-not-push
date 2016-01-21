@@ -78,9 +78,6 @@ if __name__ == '__main__':
                 pass
             finally:
                 GPIO.cleanup()
-            while(1):
-                GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING)
-                call_on_me(BUTTON_PIN)
         else:
             while(1):
                 mr_button.push_button()
