@@ -170,9 +170,9 @@ class MrButton(object):
 class Narrative(object):
 
     def __init__(self, yaml_file_or_dir, parent=None):
-        self.basedir = os.path.dirname(yaml_file_or_dir)
         self.parent = parent
         if os.path.isdir(yaml_file_or_dir):
+            self.basedir = yaml_file_or_dir
             print yaml_file_or_dir, "is a dir?"
             self.yaml_file = os.path.join(yaml_file_or_dir, 'button.yml')
             self.sequences = {}
@@ -185,10 +185,15 @@ class Narrative(object):
                     })
             # TODO: list all mp3 files, create a separate sequence for each
             for subf in os.listdir(yaml_file_or_dir):
-                if subf.split('.')[-1] == 'mp3':
-                    print subf
+                name, ext = subf.rsplit('.', 1)
+                if ext == 'mp3':
+                    self.sequences[name] = [{
+                            'text': name,
+                            'audio': subf,
+                            }]
             self._add_sequences_to_transitions()
         else:
+            self.basedir = os.path.dirname(yaml_file_or_dir)
             self.yaml_file = yaml_file_or_dir
             with open(self.yaml_file, 'r') as f:
                 narrative = yaml.load(f)
@@ -378,7 +383,9 @@ class Narrative(object):
         if len(choices.keys()) == 0:
             # If no valid choices force explicit transition
             # to parent
-            choices['__dir__' + parent['dir']] = c
+            return parent.select_transition(visited, cache, trigger)
+            #choices['__dir__' + parent['dir']] = parent
+            
             
         keys = choices.keys()
         #print "choices are ", keys

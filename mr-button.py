@@ -83,7 +83,7 @@ if __name__ == '__main__':
             try:
                 while(1):
                     try:
-                        GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING)
+                        GPIO.wait_for_edge(BUTTON_PIN, GPIO.FALLING, timeout=5000)
                         GPIO.output(AMP_PIN, GPIO.HIGH)
                         call_on_me(BUTTON_PIN)
                         GPIO.output(AMP_PIN, GPIO.LOW)
