@@ -187,6 +187,7 @@ class Narrative(object):
             for subf in os.listdir(yaml_file_or_dir):
                 if subf.split('.')[-1] == 'mp3':
                     print subf
+            self._add_sequences_to_transitions()
         else:
             self.yaml_file = yaml_file_or_dir
             with open(self.yaml_file, 'r') as f:
@@ -199,6 +200,7 @@ class Narrative(object):
 
             self._load_children('button')
             self._load_children('timeout')
+            self._add_sequences_to_transitions()
 
     def get_sequence(self, name, with_narrative=False):
         if name in self.sequences:
@@ -243,6 +245,17 @@ class Narrative(object):
                 else:
                     print " "*i2, t['sequence']
 
+    def _add_sequences_to_transitions(self):
+        # gather sequences that are not explicitly mentioned in
+        # transitions, give them weight 1
+        for seq in self.sequences:
+            if seq not in self.transitions['button'] and seq not in self.transitions['timeout']:
+                seq_transition = {
+                    'sequence': seq,
+                    'weight': 1,
+                }
+                self.transitions['button'].append(seq_transition)
+
 
     def _load_children(self, transition_type):
         parent_found = False
@@ -272,6 +285,7 @@ class Narrative(object):
                 })
 
         if transition_type == 'button':
+
             # scan all subdirs for button.yml
             for f in os.listdir(self.basedir):
                 if not os.path.isdir(os.path.join(self.basedir, f)):
@@ -344,6 +358,7 @@ class Narrative(object):
 
     def select_transition(self, visited, cache, trigger='button'):
         choices = {}
+        parent = None
         # gather choices
         for c in self.transitions.get(trigger,[]):
             if 'sequence' in c:
@@ -352,13 +367,19 @@ class Narrative(object):
                 k = c['narrative']
                 if k not in visited:
                     choices['__dir__' + c['dir']] = c
-        # TODO gather sequences that are not explicitly mentioned in
-        # transitions, give them weight 1
+                if c['dir'] == '..':
+                    parent = c
+
 
         for seq_name in reversed(cache):
             if seq_name in choices and len(choices) > 1:
                 del choices[seq_name]
         
+        if len(choices.keys()) == 0:
+            # If no valid choices force explicit transition
+            # to parent
+            choices['__dir__' + parent['dir']] = c
+            
         keys = choices.keys()
         #print "choices are ", keys
         transition_index = random.randint(0, len(keys) - 1)
